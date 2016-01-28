@@ -22,7 +22,7 @@ public class SiteStatusChecker {
         List<String> urls = siteStatusChecker.getAllSiteList();
 
         StatusReport statusReport=StatusReport.get_instance();
-        statusReport.init(siteNames);
+        statusReport.init(siteNames,urls);
 
         siteCrawlerController=new SiteCrawlerController(urls.toArray(new String[urls.size()]));
         siteCrawlerController.startCrawl();
@@ -36,7 +36,7 @@ public class SiteStatusChecker {
 
     public List<String> getAllSiteList() throws IOException {
         InputStream inputStream=null;
-        inputStream=new FileInputStream("/home/himanshuk/rhythmone/site404Checker/crawl/config/site-list.properties");
+        inputStream=new FileInputStream("~/site-404-checker/src/main/resources/site-list.properties");
         Properties siteListProperties=new Properties();
         siteListProperties.load(inputStream);
 

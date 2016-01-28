@@ -22,7 +22,7 @@ public class SiteCrawlerController {
     }
 
     private void init() throws FileNotFoundException {
-        InputStream inputStream=new FileInputStream("/home/himanshuk/rhythmone/site404Checker/crawl/config/crawl-config.properties");
+        InputStream inputStream=new FileInputStream("~/site-404-checker/src/main/resources/crawl-config.properties");
         Properties crawlProperties=new Properties();
         try {
             crawlProperties.load(inputStream);

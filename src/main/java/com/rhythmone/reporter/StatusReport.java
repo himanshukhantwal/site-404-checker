@@ -12,6 +12,7 @@ public class StatusReport {
     private Map<String,List<UrlStatus>> siteNameToUrlStatusMap=new HashMap<>();
     private Map<String,int[]> siteToReachabilityCount=new HashMap<>();
     private int[] reachabilityCount=new int[3]; //0 index for success , 1 for redirectional, 2 for errors
+    private List<String> initialUrls;
 
     public static StatusReport get_instance(){
         if(_instance ==null) {
@@ -19,7 +20,8 @@ public class StatusReport {
         }
         return _instance;
     }
-    public void init(String[] siteNames)  {
+    public void init(String[] siteNames, List<String> initialUrls)  {
+        this.initialUrls=initialUrls;
         for(String siteName:siteNames){
             siteNameToUrlStatusMap.put(siteName,new ArrayList<UrlStatus>());
             siteToReachabilityCount.put(siteName,new int[3]);
@@ -85,14 +87,14 @@ public class StatusReport {
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append("YES REDIRECTING").append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusCode()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusDesc()).append("</td>").append("</tr>");
-                }/*else{
+                }else if(initialUrls.contains(urlStatus.getUrl())){
                     htmlString.append(" bgcolor=\"#7fbf7f\">")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getUrl()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(System.currentTimeMillis()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append("YES").append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusCode()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusDesc()).append("</td>").append("</tr>");
-                }*/
+                }
               }
         }
 
