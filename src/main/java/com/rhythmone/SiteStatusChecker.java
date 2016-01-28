@@ -36,7 +36,7 @@ public class SiteStatusChecker {
 
     public List<String> getAllSiteList() throws IOException {
         InputStream inputStream=null;
-        inputStream=new FileInputStream("~/site-404-checker/src/main/resources/site-list.properties");
+        inputStream=new FileInputStream("/etc/site-404-checker/site-list.properties");
         Properties siteListProperties=new Properties();
         siteListProperties.load(inputStream);
 

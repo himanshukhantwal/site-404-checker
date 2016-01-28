@@ -28,7 +28,7 @@ public class SendSiteStatusMail
    }
 
    private void init() throws IOException {
-      InputStream mailConfig=new FileInputStream("~/site-404-checker/src/main/resources/mail-config.properties");
+      InputStream mailConfig=new FileInputStream("/etc/site-404-checker/mail-config.properties");
       Properties mailProperties=new Properties();
       mailProperties.load(mailConfig);
       sendToMailList= ((String)mailProperties.getProperty("sendMailTo")).split(",");

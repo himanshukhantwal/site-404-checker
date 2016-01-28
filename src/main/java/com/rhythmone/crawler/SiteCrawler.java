@@ -26,7 +26,7 @@ public class SiteCrawler extends WebCrawler {
     }
 
     private void init() throws IOException {
-        InputStream inputStream=new FileInputStream("~/site-404-checker/src/main/resources/crawl-config.properties");
+        InputStream inputStream=new FileInputStream("/etc/site-404-checker/crawl-config.properties");
         Properties excludeProperties=new Properties();
         excludeProperties.load(inputStream);
 
