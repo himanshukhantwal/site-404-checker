@@ -2,6 +2,7 @@ package com.rhythmone.reporter;
 
 import com.rhythmone.model.UrlStatus;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -32,7 +33,7 @@ public class StatusReport {
 
         for(Map.Entry<String, List<UrlStatus>> siteToUrl:siteNameToUrlStatusMap.entrySet()){
             if(webURL.contains(siteToUrl.getKey())){
-                siteToUrl.getValue().add(new UrlStatus(webURL,statusDescription,statusCode));
+                siteToUrl.getValue().add(new UrlStatus(webURL,statusDescription,statusCode,new Timestamp(System.currentTimeMillis())));
                 if(statusCode>=400){
                     reachabilityCount[2]++;
                     (siteToReachabilityCount.get(siteToUrl.getKey()))[2]++;
@@ -75,7 +76,7 @@ public class StatusReport {
                 if(urlStatus.getStatusCode()>=400){
                     htmlString.append(" bgcolor=\"#FF0000\">")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getUrl()).append("</td>")
-                             .append("<td  style=\"padding: 5px;border:1px solid black;\">").append(System.currentTimeMillis()).append("</td>")
+                             .append("<td  style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getTimestamp()).append("</td>")
                                 .append("<td style=\"padding: 5px;border:1px solid black;\">").append("NO").append("</td>")
                                 .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusCode()).append("</td>")
                                 .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusDesc()).append("</td>")
@@ -83,14 +84,14 @@ public class StatusReport {
                 }else if(urlStatus.getStatusCode()>=300){
                     htmlString.append(" bgcolor=\"#f7f7b3\">")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getUrl()).append("</td>")
-                            .append("<td style=\"padding: 5px;border:1px solid black;\">").append(System.currentTimeMillis()).append("</td>")
+                            .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getTimestamp()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append("YES REDIRECTING").append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusCode()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusDesc()).append("</td>").append("</tr>");
                 }else if(initialUrls.contains(urlStatus.getUrl())){
                     htmlString.append(" bgcolor=\"#7fbf7f\">")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getUrl()).append("</td>")
-                            .append("<td style=\"padding: 5px;border:1px solid black;\">").append(System.currentTimeMillis()).append("</td>")
+                            .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getTimestamp()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append("YES").append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusCode()).append("</td>")
                             .append("<td style=\"padding: 5px;border:1px solid black;\">").append(urlStatus.getStatusDesc()).append("</td>").append("</tr>");
