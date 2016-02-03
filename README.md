@@ -17,39 +17,46 @@ Adding any new website or mail address is as easy as updating the property files
 
 
 ### System requirement:
-1) Java installed(>jdk1.6)
-2) SMTP server installed and configured (or use smtp.gmail.com for sending from gmail server directly)
-3) Git command line utility installed
-4) Maven build tool
+1. Java installed(>jdk1.6)
+2. SMTP server installed and configured (or use smtp.gmail.com for sending from gmail server directly)
+3. Git command line utility installed
+4. Maven build tool
 
 ### Build Tool:
-1) Perform git clone at /opt/ directory
-2) go inside /opt/site-404-checker directory 
+1. Perform ```git clone at /opt/ directory```
+2. go inside /opt/site-404-checker directory 
     and Run command mvn install
 
 ### Run Tool:-
-1) Add property file from 
-    /opt/site-404-checker/src/main/resources/   to   /etc/site-404-checker directory.
+1. Add property file from 
+    
+    ```/opt/site-404-checker/src/main/resources/*   to   /etc/site-404-checker directory.```
 
-2) Add your site urls to the site-list.properties file:
-    vi /etc/site-404-checker/site-list.properties
+2. Add your site urls to the site-list.properties file:
     
-3) Add your mail-id and smtp server details to mail-config.properties:
-    vi /etc/site-404-checker/mail-config.properties
+    ```vi /etc/site-404-checker/site-list.properties```
     
-4) Make changes to crawler configuration:
-    vi /etc/site-404-checker/crawl-config.properties
+3. Add your mail-id and smtp server details to mail-config.properties:
     
-5) execute /opt/site-404-checker/runsitechecker.sh
+    ```vi /etc/site-404-checker/mail-config.properties```
+    
+4. Make changes to crawler configuration:
+    
+    ```vi /etc/site-404-checker/crawl-config.properties```
+    
+5. execute /opt/site-404-checker/runsitechecker.sh
 
-    you should recieve report mail after completion of above script
+    > you should recieve report mail after completion of above script
 
 ### Configuring tool to run at fixed interval:
-1) add the runsitechecker.sh script in cron job:
-    vi /etc/crontab
+1. add the runsitechecker.sh script in cron job:
     
-    add below line for running the script after every 8 hour:
-    0 */8 * * * <user-name> /opt/site-404-checker/runsitechecker.sh
+    ```vi /etc/crontab```
+    
+    
+    > add below line for running the script after every 8 hour:
+    
+    ```0 */8 * * * <user-name> /opt/site-404-checker/runsitechecker.sh```
     
 
 
