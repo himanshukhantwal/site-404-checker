@@ -14,3 +14,42 @@ Following are details about the property files present in the tool:
     crawl-config.properties - This file is located in /etc/site-404-checker and contains the configuration values related to the tool, for example, the depth level till which the pages should be checked etc..
 
 Adding any new website or mail address is as easy as updating the property files mentioned above. All the new values are picked up whenever the tool is fired again. Currently the tool is scheduled to run every 8 hours.
+
+
+### System requirement:
+1) Java installed(>jdk1.6)
+2) SMTP server installed and configured (or use smtp.gmail.com for sending from gmail server directly)
+3) Git command line utility installed
+4) Maven build tool
+
+### Build Tool:
+1) Perform git clone at /opt/ directory
+2) go inside /opt/site-404-checker directory 
+    and Run command mvn install
+
+### Run Tool:-
+1) Add property file from 
+    /opt/site-404-checker/src/main/resources/   to   /etc/site-404-checker directory.
+
+2) Add your site urls to the site-list.properties file:
+    vi /etc/site-404-checker/site-list.properties
+    
+3) Add your mail-id and smtp server details to mail-config.properties:
+    vi /etc/site-404-checker/mail-config.properties
+    
+4) Make changes to crawler configuration:
+    vi /etc/site-404-checker/crawl-config.properties
+    
+5) execute /opt/site-404-checker/runsitechecker.sh
+
+    you should recieve report mail after completion of above script
+
+### Configuring tool to run at fixed interval:
+1) add the runsitechecker.sh script in cron job:
+    vi /etc/crontab
+    
+    add below line for running the script after every 8 hour:
+    0 */8 * * * <user-name> /opt/site-404-checker/runsitechecker.sh
+    
+
+
